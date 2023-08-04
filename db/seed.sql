@@ -36,4 +36,8 @@ VALUES
 
 INSERT INTO players(position, name, draft, height, weight, accolades, hof)
 VALUES
-('SF', 'LeBron James', 2003, '6 ft 9 in', '250 lbs', '19x All-Star, 4x MVP, 4x Finals MVP, 4x Champ', false )
+('SF', 'LeBron James', 2003, '6 ft 9 in', 250, '19x All-Star, 3x All-Star MVP, 4x MVP, 4x Finals MVP, 4x Champ', false ),
+('PG','Steph Curry', 2009,'6 ft 2 in', 185, '9x All-Star, 1x All-Star MVP, 2x MVP, 4x Champ, 1x Finals MVP', false),
+('SG', 'James Harden', 2009, '6 ft 5 in', 220, '10x All-Star, 1x MVP, 1x 6MOY', false),
+('PF', 'Giannis Antetokounmpo', 2013, '7 ft', 242, '7x All-Star, 2x MVP, 1x All-Star MVP, 1x DPOY', false),
+('C', 'Nikola Jokic', 2014, '6 ft 11 in', 284,'5x All-Star, 2x MVP, 1x Finals MVP, 1x Champ', false)

@@ -19,7 +19,7 @@ CREATE TABLE players (
     name TEXT NOT NULL,
     position TEXT NOT NULL,
     draft YEAR,
-    height INT,
+    height TEXT,
     weight INT,
     accolades TEXT,
     hof BOOLEAN
