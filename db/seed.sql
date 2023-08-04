@@ -1,7 +1,7 @@
 \c teams_dev
 
 INSERT INTO 
-    teams(division, name, abber, championship)
+    teams (division, name, abber, championship)
 VALUES
 ('Southeast','Atlanta Hawks','ATL', 1),
 ('Atlantic','Boston Celtics','BOS', 17),
