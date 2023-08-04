@@ -33,3 +33,7 @@ VALUES
 ('Atlantic','Toronto Raptors','TOR', 1),
 ('Northwest','Utah Jazz','UTA', 0),
 ('Southeast','Washington Wizards','WAS', 1);
+
+INSERT INTO players(position, name, draft, height, weight, accolades, hof)
+VALUES
+('SF', 'LeBron James', 2003, '6 ft 9 in', '250 lbs', '19x All-Star, 4x MVP, 4x Finals MVP, 4x Champ', false )
