@@ -42,7 +42,15 @@ VALUES
 ('Benched Mob'),
 ('No Boys Allowed');
 
-INSERT INTO players(position, name, draft, height, weight, accolades, hof)
+INSERT INTO 
+    comments ( name, content, team_id )
+VALUES
+('someGuy', 'THIS IS WACK', '1' ),
+('thisDude', 'DO BETTER', '2'),
+('chefCurry', 'BAD TEAM! BOOOOO!', '3'),
+('nobody', 'KINDA OKAY.', '4');
+
+INSERT INTO players (position, name, draft, height, weight, accolades, hof)
 VALUES
 ('SF', 'LeBron James', 2003, '6 ft 9 in', 250, '19x All-Star, 3x All-Star MVP, 4x MVP, 4x Finals MVP, 4x Champ', false ),
 ('PG','Steph Curry', 2009,'6 ft 2 in', 185, '9x All-Star, 1x All-Star MVP, 2x MVP, 1x Finals MVP, 4x Champ', false),
