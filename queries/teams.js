@@ -21,7 +21,57 @@ const getTeamById = async (id) => {
   }
 };
 
+const createTeam = async (team) => {
+  try {
+      const newTeam = await db.one(`INSERT INTO teams (name) VALUES ($1) RETURNING *`, [team.name])
+      return newTeam
+  } catch (error) {
+      return error
+  }
+}
+
+const deleteTeamById = async (id) => {
+  try {
+     const deleteTeam = await db.any("DELETE FROM teams WHERE id= $1 RETURNING *", id)
+     return deleteTeam
+
+  } catch (error) {
+      return error
+  }
+}
+
+const updateTeamById = async (id, team) => {
+  try {
+    let dynamicValues = Object.values(team);
+
+    function makeQueryString(data) {
+      let count = 2;
+      let result = "";
+
+      for (let key in data) {
+        result += `${key} = $${count},`;
+        count++;
+      }
+      result = result.substring(0, result.length - 1);
+      return result;
+    }
+
+    let queryString = makeQueryString(team);
+
+    const updatedTeam = await db.any(
+      `UPDATE teams SET ${queryString} WHERE id = $1 RETURNING *`,
+      [id, ...dynamicValues]
+    );
+    return updatedTeam;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getAllTeams,
   getTeamById,
+  createTeam,
+  deleteTeamById,
+  updateTeamById
 };
