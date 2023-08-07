@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+const commentsController = require("./commentsController")
+
+router.use("/:teamId/comments", commentsController)
+
 const { 
   getAllTeams, 
   getTeamById, 

@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
+    commenter TEXT NOT NULL,
     content TEXT,
     team_id INTEGER REFERENCES teams (id) ON DELETE CASCADE
 );

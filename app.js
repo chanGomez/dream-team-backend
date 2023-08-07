@@ -4,6 +4,8 @@ const morgan = require("morgan");
 
 const teamsController = require("./controllers/teamsController");
 const playersController = require("./controllers/playersContoller");
+const commentsController = require("./controllers/commentsController");
+
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(morgan("dev"));
 
 app.use("/teams", teamsController);
 app.use("/players", playersController);
+app.use("/comments", commentsController);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Dream Team App");

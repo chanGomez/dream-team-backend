@@ -43,7 +43,7 @@ VALUES
 ('No Boys Allowed');
 
 INSERT INTO 
-    comments ( name, content, team_id )
+    comments ( commenter, content, team_id )
 VALUES
 ('someGuy', 'THIS IS WACK', '1' ),
 ('thisDude', 'DO BETTER', '2'),
