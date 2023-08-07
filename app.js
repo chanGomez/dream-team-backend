@@ -3,7 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const teamsController = require("./controllers/teamsController");
-const playersController = require("./controllers/playersContoller");
+const playersController = require("./controllers/playersController");
 const commentsController = require("./controllers/commentsController");
 
 

@@ -1,8 +1,10 @@
 const express = require("express");
 
-const router = express.Router();
+const { getAllPlayers, 
+  getPlayerById } 
+  = require("../queries/players");
 
-const { getAllPlayers, getPlayerById } = require("../queries/players");
+const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   const allPlayers = await getAllPlayers();

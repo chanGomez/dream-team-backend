@@ -14,7 +14,8 @@ CREATE DATABASE teams_dev;
 
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    is_favorite BOOLEAN
 );
 
 DROP TABLE IF EXISTS comments;
@@ -36,5 +37,6 @@ CREATE TABLE players (
     height TEXT,
     weight INT,
     accolades TEXT,
-    hof BOOLEAN
+    hof BOOLEAN,
+    team_id INTEGER REFERENCES teams (id) ON DELETE CASCADE
 );
