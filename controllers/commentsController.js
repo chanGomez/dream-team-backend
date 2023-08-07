@@ -70,24 +70,6 @@ const {
     }
   });
 
-  router.get("/:bookmarkId/get-all-reviews", async (req, res) => {
-    const { bookmarkId } = req.params;
-  
-    try {
-      const allReviewsById = await getAllReviewsOnBookmarkId(bookmarkId);
-  
-      if (allReviewsById.length === 0) {
-        return res.status(404).json({ error: "Review not found" });
-      } else {
-        console.log(allReviewsById);
-        return res.json(allReviewsById);
-      }
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
-
-
   router.get("/:teamId/get-all-comments", async (req, res) => {
     const { teamId } = req.params;
   
