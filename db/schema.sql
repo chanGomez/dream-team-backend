@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS players;
 
 CREATE TABLE players (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
+    player_name TEXT NOT NULL,
     position TEXT NOT NULL,
     draft INT,
     height TEXT,
