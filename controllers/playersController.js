@@ -17,7 +17,7 @@ router.get("/all-players-in-team", async (req, res) => {
   }
 });
 
-  // localhost:3006/teams/1/players/7
+  // localhost:3006/teams/1/players/all-players-in-team
 router.get("/:playerId", async (req, res) => {
   try {
     const player = await getPlayerById(

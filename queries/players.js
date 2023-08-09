@@ -1,10 +1,26 @@
 const db = require("../db/dbconfig");
 
-const getAllPlayersInTeam = async (teamId) => {
+const getAllPlayersInTeam = async (
+         playerIdone,
+       playerIdtwo,
+       playerIdthree,
+       playerIdfour,
+       playerIdfive,
+       teamId
+) => {
   try {
     const allPlayers = await db.any(
-      `SELECT * FROM players where team_id = $1 ORDER BY id ASC`,
-      teamId
+      `SELECT player_id_one = $1,
+      player_id_two = $2, 
+      player_id_three = $3, 
+      player_id_four = $4, 
+      player_id_five= $5 FROM teams where team.id = $6`,
+       playerIdone,
+       playerIdtwo,
+       playerIdthree,
+       playerIdfour,
+       playerIdfive,
+       teamId
     );
 
     return allPlayers;
@@ -13,25 +29,10 @@ const getAllPlayersInTeam = async (teamId) => {
   }
 };
 
-const getPlayerById = async (teamId, playerId) => {
+const getPlayerById = async (id) => {
   try {
     const onePlayer = await db.any(
-      `
-        SELECT TEAM_ID,
-        POSITION,
-        PLAYER_NAME,
-        DRAFT,
-        HEIGHT,
-        WEIGHT,
-        ACCOLADES,
-        HOF
-        FROM TEAMS
-        JOIN PLAYERS ON TEAMS.ID = PLAYERS.TEAM_ID
-        WHERE TEAMS.ID = $1
-            AND PLAYERS.ID = $2;
-    `,
-      [teamId, playerId]
-    );
+      `SELECT * FROM players WHERE id=$1`, id)
 
     return onePlayer;
   } catch (error) {
@@ -40,28 +41,28 @@ const getPlayerById = async (teamId, playerId) => {
 };
 
 const getAllPlayers = async () => {
-    try {
-        const allPlayers = await db.any("SELECT * FROM players");
-        console.log(allPlayers);
-        return allPlayers
-    } catch (error) {
-        return error 
-    }
+  try {
+    const allPlayers = await db.any("SELECT * FROM players");
+    console.log(allPlayers);
+    return allPlayers;
+  } catch (error) {
+    return error;
+  }
 };
 
+module.exports = { getAllPlayersInTeam, getPlayerById, getAllPlayers };
 
-module.exports = { getAllPlayersInTeam, getPlayerById, getAllPlayers};
 
+// SELECT * FROM teams where 
+//       player_id_one = 1
+//       player_id_two = 2 
+//       player_id_three = 3 
+//       player_id_four = 4 
+//       player_id_five= 5
+//        ORDER BY id ASC;
 
-// SELECT TEAM_ID,
-// POSITION,
-// PLAYER_NAME,
-// DRAFT,
-// HEIGHT,
-// WEIGHT,
-// ACCOLADES,
-// HOF
-// FROM TEAMS
-// JOIN PLAYERS ON TEAMS.ID = PLAYERS.TEAM_ID
-// WHERE TEAMS.ID = 1
-//     AND PLAYERS.ID = 1;
+// SELECT player_id_one = 1,
+//       player_id_two = 2, 
+//       player_id_three = 3, 
+//       player_id_four = 4, 
+//       player_id_five= 5 FROM teams where team.id = 1;
