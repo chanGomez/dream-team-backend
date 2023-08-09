@@ -5,7 +5,11 @@ const getAllPlayersInTeam = async (
 ) => {
   try {
     const allPlayers = await db.any(
-      `SELECT * FROM fantasy where team_id = $1`,
+      // `SELECT * FROM fantasy where team_id = $1`,
+      `SELECT player_name, name FROM fantasy 
+      JOIN players on fantasy.player_id = players.id
+      JOIN teams on fantasy.team_id = teams.id
+      WHERE fantasy.team_id = $1`,
        teamId
     );
 

@@ -7,8 +7,22 @@ const { getAllPlayersInTeam,
 
 const router = express.Router({ mergeParams: true });
 
-  // localhost:3006/teams/1/players/all-players-in-team
-router.get("/all-players-in-team", async (req, res) => {
+// localhost:3006/players/all-players-list
+router.get("/all-players-list", async (req, res) => {
+  const allPlayers = await getAllPlayers();
+console.log(allPlayers);
+  if (Array.isArray(allPlayers)) {
+    res.json(allPlayers);
+  } else {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+//IN THE TEAM BELOW
+
+  // localhost:3006/teams/1/players/
+router.get("/", async (req, res) => {
 
   const allPlayers = await getAllPlayersInTeam(req.params.teamId);
   if (allPlayers.length === 0) {
@@ -18,7 +32,7 @@ router.get("/all-players-in-team", async (req, res) => {
   }
 });
 
-  // localhost:3006/players/1
+  // localhost:3006/teams/2/players/35
 router.get("/:playerId", async (req, res) => {
   try {
     const player = await getPlayerById(
@@ -38,15 +52,5 @@ router.get("/:playerId", async (req, res) => {
   }
 });
 
-// localhost:3006/players
-router.get("/", async (req, res) => {
-  const allPlayers = await getAllPlayers();
-console.log(allPlayers);
-  if (Array.isArray(allPlayers)) {
-    res.json(allPlayers);
-  } else {
-    res.status(500).json({ error: "Server error" });
-  }
-});
 
 module.exports = router;
