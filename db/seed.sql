@@ -60,12 +60,12 @@ VALUES
 ('SG', 'Jaylen Brown', 2016, ' 6 ft 6 in', 223, '2x All-Star', false);
 
 INSERT INTO 
-    teams ( name , is_favorite, player_id )
+    teams ( name , is_favorite )
 VALUES
-('Spicy Curry', true, '1'), 
-('Bronny Bunch', false, '6'), 
-('Benched Mob', true, '11'), 
-('No Boys Allowed', false, '16'), 
+('Spicy Curry', true), 
+('Bronny Bunch', false), 
+('Benched Mob', true), 
+('No Boys Allowed', false);
 
 INSERT INTO 
     comments ( commenter, content, team_id )
@@ -78,10 +78,10 @@ VALUES
 INSERT INTO 
     fantasy ( team_id, player_id )
 VALUES
-('someGuy', 'THIS IS WACK', '1' ),
-('thisDude', 'DO BETTER', '2'),
-('chefCurry', 'BAD TEAM! BOOOOO!', '3'),
-('nobody', 'KINDA OKAY.', '4');
+('2', '2'),
+('4', '3'),
+('1', '5'),
+('3', '4');
 
 
 

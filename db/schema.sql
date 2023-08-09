@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS teams;
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    is_favorite BOOLEAN,
-    player_id INTEGER REFERENCES players (id) ON DELETE CASCADE
+    is_favorite BOOLEAN
+    -- player_id INTEGER REFERENCES players (id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS comments;
@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS fantasy;
 
 CREATE TABLE fantasy (
     id SERIAL PRIMARY KEY,
-    player_id INTEGER REFERENCES players (id) ON DELETE CASCADE
+    player_id INTEGER REFERENCES players (id) ON DELETE CASCADE,
     team_id INTEGER REFERENCES teams (id) ON DELETE CASCADE
 );
 
