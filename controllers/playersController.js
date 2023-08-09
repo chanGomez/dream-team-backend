@@ -9,6 +9,7 @@ const router = express.Router({ mergeParams: true });
 
   // localhost:3006/teams/1/players/all-players-in-team
 router.get("/all-players-in-team", async (req, res) => {
+
   const allPlayers = await getAllPlayersInTeam(req.params.teamId);
   if (allPlayers.length === 0) {
     res.status(404).json({ error: "not found" });
@@ -17,11 +18,10 @@ router.get("/all-players-in-team", async (req, res) => {
   }
 });
 
-  // localhost:3006/teams/1/players/all-players-in-team
+  // localhost:3006/players/1
 router.get("/:playerId", async (req, res) => {
   try {
     const player = await getPlayerById(
-      req.params.teamId,
       req.params.playerId
     );
 

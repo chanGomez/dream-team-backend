@@ -1,25 +1,11 @@
 const db = require("../db/dbconfig");
 
 const getAllPlayersInTeam = async (
-         playerIdone,
-       playerIdtwo,
-       playerIdthree,
-       playerIdfour,
-       playerIdfive,
        teamId
 ) => {
   try {
     const allPlayers = await db.any(
-      `SELECT player_id_one = $1,
-      player_id_two = $2, 
-      player_id_three = $3, 
-      player_id_four = $4, 
-      player_id_five= $5 FROM teams where team.id = $6`,
-       playerIdone,
-       playerIdtwo,
-       playerIdthree,
-       playerIdfour,
-       playerIdfive,
+      `SELECT * FROM fantasy where team_id = $1`,
        teamId
     );
 

@@ -23,10 +23,8 @@ const getTeamById = async (id) => {
 
 const createTeam = async (team) => {
   try {
-      const newTeam = await db.one(`INSERT INTO teams (name, is_favorite, 
-        player_id_one, player_id_two, player_id_three, player_id_four, player_id_five) VALUES ($1) RETURNING *`, 
-      [team.name, team.is_favorite, team.player_id_one, team.player_id_two, 
-        team.player_id_three, team.player_id_four, team.player_id_five])
+      const newTeam = await db.one(`INSERT INTO teams (name, is_favorite) VALUES ($1) RETURNING *`, 
+      [team.name, team.is_favorite])
       return newTeam
   } catch (error) {
       return error
