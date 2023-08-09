@@ -1,13 +1,13 @@
 const db = require("../db/dbconfig");
 
-const getAllPlayers = async (teamId) => {
+const getAllPlayersInTeam = async (teamId) => {
   try {
-    const allComments = await db.any(
+    const allPlayers = await db.any(
       `SELECT * FROM players where team_id = $1 ORDER BY id ASC`,
       teamId
     );
 
-    return allComments;
+    return allPlayers;
   } catch (error) {
     return error;
   }
@@ -39,8 +39,18 @@ const getPlayerById = async (teamId, playerId) => {
   }
 };
 
+const getAllPlayers = async () => {
+    try {
+        const allPlayers = await db.any("SELECT * FROM players");
+        console.log(allPlayers);
+        return allPlayers
+    } catch (error) {
+        return error 
+    }
+};
 
-module.exports = { getAllPlayers, getPlayerById };
+
+module.exports = { getAllPlayersInTeam, getPlayerById, getAllPlayers};
 
 
 // SELECT TEAM_ID,

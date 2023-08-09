@@ -1,14 +1,15 @@
 const express = require("express");
 
-const { getAllPlayers, 
-  getPlayerById } 
+const { getAllPlayersInTeam, 
+  getPlayerById,
+  getAllPlayers } 
   = require("../queries/players");
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", async (req, res) => {
-  const allPlayers = await getAllPlayers(req.params.teamId);
-
+  // localhost:3006/teams/1/players/all-players-in-team
+router.get("/all-players-in-team", async (req, res) => {
+  const allPlayers = await getAllPlayersInTeam(req.params.teamId);
   if (allPlayers.length === 0) {
     res.status(404).json({ error: "not found" });
   } else {
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+  // localhost:3006/teams/1/players/7
 router.get("/:playerId", async (req, res) => {
   try {
     const player = await getPlayerById(
@@ -33,6 +35,17 @@ router.get("/:playerId", async (req, res) => {
     }
   } catch (error) {
     res.status(error.status).json({ error: error.message });
+  }
+});
+
+// localhost:3006/players
+router.get("/", async (req, res) => {
+  const allPlayers = await getAllPlayers();
+console.log(allPlayers);
+  if (Array.isArray(allPlayers)) {
+    res.json(allPlayers);
+  } else {
+    res.status(500).json({ error: "Server error" });
   }
 });
 
