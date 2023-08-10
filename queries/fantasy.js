@@ -1,6 +1,6 @@
 const db = require("../db/dbconfig");
 
-
+//returns all IDs
 const getAllFantasy = async () => {
     try {
       const allTeams = await db.any("SELECT * FROM fantasy");
@@ -11,27 +11,36 @@ const getAllFantasy = async () => {
     }
   };
   
-const getAllFantasyIdsByTeamId = async (id) => {
+  
+  //
+const getAllFantasyByTeamId = async (teamId) => {
     try {
-      const oneTeam = await db.any(
-        `SELECT * FROM fantasy 
-        where team_id = $1`, id)
+    const oneTeam = await db.any(
+
+        `SELECT player_name, name, accolades, player_id FROM fantasy 
+        JOIN players on fantasy.player_id = players.id
+        JOIN teams on fantasy.team_id = teams.id
+        WHERE fantasy.team_id = $1`, teamId)
   
       return oneTeam;
     } catch (error) {
       return error;
     }
   };
-
-//   const createFantasy = async (fantasy) => {
-//     try {
-//         const newFantasy = await db.one(`INSERT INTO fantasy (team_id, player_id) VALUES ($1, $2) RETURNING *`, 
-//         [fantasy.team_id, fantasy.player_id])
-//         return newFantasy
-//     } catch (error) {
-//         return error
-//     }
-//   }
+//create a team with players
 
 
-  module.exports = { getAllFantasyIdsByTeamId, getAllFantasy};
+    const createPlayersInTeam = async (team) => {
+        try {
+            const newTeamWithPlayers = await db.any(
+                `INSERT INTO fantasy (team_id, player_id) VALUES ($1, $2) RETURNING *`,
+                team
+            );
+            return newTeamWithPlayers;
+        } catch (error) {
+            return error;
+        }
+    };
+//update a team with players
+
+  module.exports = { getAllFantasyByTeamId, getAllFantasy, createPlayersInTeam};

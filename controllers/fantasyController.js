@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 
 const { 
-    getAllFantasyIdsByTeamId,
-    getAllFantasy
+    getAllFantasyByTeamId,
+    getAllFantasy,
+    createPlayersInTeam
   } = require("../queries/fantasy")
 
+
+
   router.get("/", async (req, res) => {
-    
+
     const allTeams = await getAllFantasy();
 
     if (Array.isArray(allTeams)) {
@@ -17,16 +20,18 @@ const {
       }
 })
 
-router.get("/:id", async (req, res) => {
-    const id = req.params.id;
+//on players querie 
 
-    const team = await getAllFantasyIdsByTeamId(id);
+router.post("/", async (req, res) => {
 
-    if (team.length === 0 ) {
-        res.status(500).json({ error: "Team not found!" });
-      } else {
-        res.status(200).json(team[0]);
-      }
-})
+    const team = await createPlayersInTeam(req.body.fantasy)
+    res.json(team)
+  
+  })
+//create a team with players
+
+
+//update a team with players
+
 
 module.exports = router;
