@@ -23,7 +23,7 @@ const getTeamById = async (id) => {
 
 const createTeam = async (team) => {
   try {
-      const newTeam = await db.one(`INSERT INTO teams (name, is_favorite) VALUES ($1) RETURNING *`, 
+      const newTeam = await db.one(`INSERT INTO teams (name, is_favorite) VALUES ($1, $2) RETURNING *`, 
       [team.name, team.is_favorite])
       return newTeam
   } catch (error) {

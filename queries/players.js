@@ -41,18 +41,3 @@ const getAllPlayers = async () => {
 };
 
 module.exports = { getAllPlayersInTeam, getPlayerById, getAllPlayers };
-
-
-// SELECT * FROM teams where 
-//       player_id_one = 1
-//       player_id_two = 2 
-//       player_id_three = 3 
-//       player_id_four = 4 
-//       player_id_five= 5
-//        ORDER BY id ASC;
-
-// SELECT player_id_one = 1,
-//       player_id_two = 2, 
-//       player_id_three = 3, 
-//       player_id_four = 4, 
-//       player_id_five= 5 FROM teams where team.id = 1;
