@@ -1,4 +1,4 @@
-const db = require("../db/dbconfig");
+const db = require("./db/dbConfig");
 
 //returns all IDs
 const getAllFantasy = async () => {
